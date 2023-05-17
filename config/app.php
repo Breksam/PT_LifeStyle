@@ -178,8 +178,8 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         Ichtrojan\Otp\OtpServiceProvider::class,
-
-
+        Intervention\Image\ImageServiceProvider::class,
+        Spatie\Permission\PermissionServiceProvider::class,
     ],
 
     /*
@@ -195,6 +195,7 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         'Otp' => Ichtrojan\Otp\Otp::class,
+        'Image' => Intervention\Image\Facades\Image::class
 
     ])->toArray(),
 

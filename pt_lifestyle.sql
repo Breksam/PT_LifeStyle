@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 16, 2023 at 04:00 AM
+-- Generation Time: May 17, 2023 at 02:20 AM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -54,11 +54,43 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(1, '2014_10_12_000000_create_users_table', 1),
-(2, '2014_10_12_100000_create_password_resets_table', 1),
-(3, '2019_08_19_000000_create_failed_jobs_table', 1),
-(4, '2019_12_14_000001_create_personal_access_tokens_table', 1),
-(5, '2019_05_11_000000_create_otps_table', 2);
+(18, '2014_10_12_000000_create_users_table', 1),
+(19, '2014_10_12_100000_create_password_resets_table', 1),
+(20, '2019_05_11_000000_create_otps_table', 1),
+(21, '2019_08_19_000000_create_failed_jobs_table', 1),
+(22, '2019_12_14_000001_create_personal_access_tokens_table', 1),
+(23, '2023_05_16_161220_create_permission_tables', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `model_has_permissions`
+--
+
+CREATE TABLE `model_has_permissions` (
+  `permission_id` bigint(20) UNSIGNED NOT NULL,
+  `model_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `model_id` bigint(20) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `model_has_roles`
+--
+
+CREATE TABLE `model_has_roles` (
+  `role_id` bigint(20) UNSIGNED NOT NULL,
+  `model_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `model_id` bigint(20) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `model_has_roles`
+--
+
+INSERT INTO `model_has_roles` (`role_id`, `model_type`, `model_id`) VALUES
+(1, 'App\\Models\\User', 1);
 
 -- --------------------------------------------------------
 
@@ -81,12 +113,8 @@ CREATE TABLE `otps` (
 --
 
 INSERT INTO `otps` (`id`, `identifier`, `token`, `validity`, `valid`, `created_at`, `updated_at`) VALUES
-(4, 'breksamhassan17@gmail.com', '624180', 60, 0, '2023-05-15 22:19:15', '2023-05-15 22:19:48'),
-(9, 'breksamhassan17@gmail.com', '722998', 60, 0, '2023-05-15 22:25:02', '2023-05-15 22:26:14'),
-(11, 'breksamhassan17@gmail.com', '372632', 60, 0, '2023-05-15 22:44:28', '2023-05-15 22:45:03'),
-(12, 'breksamhassan17@gmail.com', '147599', 60, 0, '2023-05-15 22:45:53', '2023-05-15 22:47:43'),
-(13, 'breksamhassan17@gmail.com', '234546', 60, 0, '2023-05-15 22:51:37', '2023-05-15 22:51:58'),
-(15, 'breksamhassan17@gmail.com', '209147', 60, 0, '2023-05-15 22:56:18', '2023-05-15 22:57:13');
+(1, 'breksamhassan17@gmail.com', '111550', 60, 0, '2023-05-16 21:11:50', '2023-05-16 21:13:02'),
+(3, 'breksamhassan17@gmail.com', '057559', 60, 0, '2023-05-16 21:13:42', '2023-05-16 21:14:11');
 
 -- --------------------------------------------------------
 
@@ -99,6 +127,102 @@ CREATE TABLE `password_resets` (
   `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `permissions`
+--
+
+CREATE TABLE `permissions` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `guard_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `permissions`
+--
+
+INSERT INTO `permissions` (`id`, `name`, `guard_name`, `created_at`, `updated_at`) VALUES
+(1, 'message create', 'web', NULL, NULL),
+(2, 'message view', 'web', NULL, NULL),
+(3, 'message edit', 'web', NULL, NULL),
+(4, 'message delete', 'web', NULL, NULL),
+(5, 'settings create', 'web', NULL, NULL),
+(6, 'settings view', 'web', NULL, NULL),
+(7, 'settings edit', 'web', NULL, NULL),
+(8, 'settings delete', 'web', NULL, NULL),
+(9, 'reports orders', 'web', NULL, NULL),
+(10, 'reports exams', 'web', NULL, NULL),
+(11, 'reports users', 'web', NULL, NULL),
+(12, 'reports view', 'web', NULL, NULL),
+(13, 'users create', 'web', NULL, NULL),
+(14, 'users view', 'web', NULL, NULL),
+(15, 'users edit', 'web', NULL, NULL),
+(16, 'users delete', 'web', NULL, NULL),
+(17, 'sliders create', 'web', NULL, NULL),
+(18, 'sliders view', 'web', NULL, NULL),
+(19, 'sliders edit', 'web', NULL, NULL),
+(20, 'sliders delete', 'web', NULL, NULL),
+(21, 'categories create', 'web', NULL, NULL),
+(22, 'categories view', 'web', NULL, NULL),
+(23, 'categories edit', 'web', NULL, NULL),
+(24, 'categories delete', 'web', NULL, NULL),
+(25, 'brands create', 'web', NULL, NULL),
+(26, 'brands view', 'web', NULL, NULL),
+(27, 'brands edit', 'web', NULL, NULL),
+(28, 'brands delete', 'web', NULL, NULL),
+(29, 'posts create', 'web', NULL, NULL),
+(30, 'posts view', 'web', NULL, NULL),
+(31, 'posts edit', 'web', NULL, NULL),
+(32, 'posts delete', 'web', NULL, NULL),
+(33, 'products create', 'web', NULL, NULL),
+(34, 'products view', 'web', NULL, NULL),
+(35, 'products edit', 'web', NULL, NULL),
+(36, 'products delete', 'web', NULL, NULL),
+(37, 'carts create', 'web', NULL, NULL),
+(38, 'carts view', 'web', NULL, NULL),
+(39, 'carts edit', 'web', NULL, NULL),
+(40, 'carts delete', 'web', NULL, NULL),
+(41, 'wishlist create', 'web', NULL, NULL),
+(42, 'wishlist view', 'web', NULL, NULL),
+(43, 'wishlist edit', 'web', NULL, NULL),
+(44, 'wishlist delete', 'web', NULL, NULL),
+(45, 'orders create', 'web', NULL, NULL),
+(46, 'orders view', 'web', NULL, NULL),
+(47, 'orders edit', 'web', NULL, NULL),
+(48, 'orders delete', 'web', NULL, NULL),
+(49, 'promos create', 'web', NULL, NULL),
+(50, 'promos view', 'web', NULL, NULL),
+(51, 'promos edit', 'web', NULL, NULL),
+(52, 'promos delete', 'web', NULL, NULL),
+(53, 'returning create', 'web', NULL, NULL),
+(54, 'returning view', 'web', NULL, NULL),
+(55, 'returning edit', 'web', NULL, NULL),
+(56, 'returning delete', 'web', NULL, NULL),
+(57, 'payment_method create', 'web', NULL, NULL),
+(58, 'payment_method view', 'web', NULL, NULL),
+(59, 'payment_method edit', 'web', NULL, NULL),
+(60, 'payment_method delete', 'web', NULL, NULL),
+(61, 'blogs create', 'web', NULL, NULL),
+(62, 'blogs view', 'web', NULL, NULL),
+(63, 'blogs edit', 'web', NULL, NULL),
+(64, 'blogs delete', 'web', NULL, NULL),
+(65, 'reviews create', 'web', NULL, NULL),
+(66, 'reviews view', 'web', NULL, NULL),
+(67, 'reviews edit', 'web', NULL, NULL),
+(68, 'reviews delete', 'web', NULL, NULL),
+(69, 'shipping_fees create', 'web', NULL, NULL),
+(70, 'shipping_fees view', 'web', NULL, NULL),
+(71, 'shipping_fees edit', 'web', NULL, NULL),
+(72, 'shipping_fees delete', 'web', NULL, NULL),
+(73, 'delivery_companies create', 'web', NULL, NULL),
+(74, 'delivery_companies view', 'web', NULL, NULL),
+(75, 'delivery_companies edit', 'web', NULL, NULL),
+(76, 'delivery_companies delete', 'web', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -123,13 +247,130 @@ CREATE TABLE `personal_access_tokens` (
 --
 
 INSERT INTO `personal_access_tokens` (`id`, `tokenable_type`, `tokenable_id`, `name`, `token`, `abilities`, `last_used_at`, `created_at`, `updated_at`) VALUES
-(2, 'App\\Models\\User', 1, 'PostmanRuntime/7.32.2', 'c0ac6c2912d763fc2d15bac72d411839c2194e63c3316b43ec3db13668601243', '[\"*\"]', NULL, '2023-05-15 19:28:28', '2023-05-15 19:28:28'),
-(3, 'App\\Models\\User', 2, 'user', '69d09d0b99c799cf0527cc3350c5926390bc8f8c9a8c62b58013985a9171d59e', '[\"app:all\"]', NULL, '2023-05-15 19:29:23', '2023-05-15 19:29:23'),
-(47, 'App\\Models\\User', 3, 'PostmanRuntime/7.32.2', 'a13c0335be3b3f4df4c0ac7067b749b61d0b9f59c4a44931c90a92de79132a06', '[\"*\"]', NULL, '2023-05-15 20:56:39', '2023-05-15 20:56:39'),
-(49, 'App\\Models\\User', 4, 'PostmanRuntime/7.32.2', 'd47c3f56757b97acd14d7160a7c8f892f72a407411543be2dc247750c64e51d7', '[\"*\"]', NULL, '2023-05-15 21:34:01', '2023-05-15 21:34:01'),
-(50, 'App\\Models\\User', 5, 'user', '0d7176ef9768a1f0b58bf687d63411efe9f607197fec3ee92ed361efbf097638', '[\"app:all\"]', NULL, '2023-05-15 21:37:30', '2023-05-15 21:37:30'),
-(52, 'App\\Models\\User', 6, 'PostmanRuntime/7.32.2', '1aec389a22db3a78d337e4230d2754ad5c4edee7b7be846236a22107820cc262', '[\"*\"]', NULL, '2023-05-15 22:16:46', '2023-05-15 22:16:46'),
-(72, 'App\\Models\\User', 7, 'PostmanRuntime/7.32.2', '263b2c4568ef25359507b03bd654b3dd8dc3f1f0b27a31e274a4be838ae4b89e', '[\"*\"]', NULL, '2023-05-15 22:57:17', '2023-05-15 22:57:17');
+(3, 'App\\Models\\User', 2, 'PostmanRuntime/7.32.2', '1ae6af6627aa80ac6152b570365b7f154c391844baf80c4e469113aa5a891d7e', '[\"*\"]', '2023-05-16 21:17:54', '2023-05-16 21:14:49', '2023-05-16 21:17:54'),
+(4, 'App\\Models\\User', 1, 'PostmanRuntime/7.32.2', '0bf5b5d3be40fd90803f5557541cc1ab5b217a6701a64d4b052599ecf61ee249', '[\"*\"]', '2023-05-16 21:19:03', '2023-05-16 21:16:41', '2023-05-16 21:19:03');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `roles`
+--
+
+CREATE TABLE `roles` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `guard_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `roles`
+--
+
+INSERT INTO `roles` (`id`, `name`, `guard_name`, `created_at`, `updated_at`) VALUES
+(1, 'super admin', 'web', '2023-05-16 21:11:19', '2023-05-16 21:11:19'),
+(2, 'tester', 'web', '2023-05-16 21:16:24', '2023-05-16 21:16:24'),
+(3, 'admin', 'web', '2023-05-16 21:17:54', '2023-05-16 21:17:54');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `role_has_permissions`
+--
+
+CREATE TABLE `role_has_permissions` (
+  `permission_id` bigint(20) UNSIGNED NOT NULL,
+  `role_id` bigint(20) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `role_has_permissions`
+--
+
+INSERT INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES
+(1, 1),
+(1, 2),
+(2, 1),
+(2, 2),
+(3, 1),
+(3, 2),
+(4, 1),
+(5, 1),
+(5, 3),
+(6, 1),
+(6, 3),
+(7, 1),
+(7, 3),
+(8, 1),
+(9, 1),
+(10, 1),
+(11, 1),
+(12, 1),
+(13, 1),
+(14, 1),
+(15, 1),
+(16, 1),
+(17, 1),
+(18, 1),
+(19, 1),
+(20, 1),
+(21, 1),
+(22, 1),
+(23, 1),
+(24, 1),
+(25, 1),
+(26, 1),
+(27, 1),
+(28, 1),
+(29, 1),
+(30, 1),
+(31, 1),
+(32, 1),
+(33, 1),
+(34, 1),
+(35, 1),
+(36, 1),
+(37, 1),
+(38, 1),
+(39, 1),
+(40, 1),
+(41, 1),
+(42, 1),
+(43, 1),
+(44, 1),
+(45, 1),
+(46, 1),
+(47, 1),
+(48, 1),
+(49, 1),
+(50, 1),
+(51, 1),
+(52, 1),
+(53, 1),
+(54, 1),
+(55, 1),
+(56, 1),
+(57, 1),
+(58, 1),
+(59, 1),
+(60, 1),
+(61, 1),
+(62, 1),
+(63, 1),
+(64, 1),
+(65, 1),
+(66, 1),
+(67, 1),
+(68, 1),
+(69, 1),
+(70, 1),
+(71, 1),
+(72, 1),
+(73, 1),
+(74, 1),
+(75, 1),
+(76, 1);
 
 -- --------------------------------------------------------
 
@@ -158,9 +399,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `first_name`, `last_name`, `email`, `email_verified_at`, `password`, `gender`, `birth_date`, `image`, `role`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Ahmed', 'Mohammed', 'ahmed@gmail.com', NULL, '$2y$10$x2qV1sh0tzJCg8kc0En06.sdE1wDL64FdFbDuKvC1xx2N7AXmi2de', NULL, NULL, NULL, 'user', NULL, '2023-05-15 19:28:21', '2023-05-15 19:28:21'),
-(2, 'Nour', 'Ahmed', 'nour@gmail.com', NULL, '$2y$10$9TJg.ahcxXKAo4r9HzopXeWGHKdh8rQ6P59HD47tUNK3hDeQZFCyO', NULL, NULL, NULL, 'user', NULL, '2023-05-15 19:29:23', '2023-05-15 19:29:23'),
-(7, 'Breksam', 'Elsokkary', 'breksamhassan17@gmail.com', '2023-05-15 22:19:48', '$2y$10$y8jv5RhpEkM7T4u9umVzYOs3gQGfPfaEBZsNZaQW8xC2NzHjNvXDq', NULL, NULL, NULL, 'user', NULL, '2023-05-15 22:19:14', '2023-05-15 22:57:13');
+(1, 'Admin', 'Test', 'admin@test.com', NULL, '$2y$10$OPSnp3IIGv1FLt0tjkv/Wu2q5X6SS3h1XlsPMaBeEKhcEiOJt97/2', 'female', '2000-01-01', NULL, 'super admin', NULL, '2023-05-16 21:11:23', '2023-05-16 21:11:23'),
+(2, 'Breksam', 'Hassan', 'breksamhassan17@gmail.com', '2023-05-16 21:13:02', '$2y$10$i5da9KrvPGZjx4Tt8dbbm.w9clqGxRatMnvN2yiMR6Kbaz.HU2k.u', 'female', '2000-01-17', '2AhZQVmT1684282535.png', 'user', NULL, '2023-05-16 21:11:49', '2023-05-16 21:15:35');
 
 --
 -- Indexes for dumped tables
@@ -180,6 +420,20 @@ ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `model_has_permissions`
+--
+ALTER TABLE `model_has_permissions`
+  ADD PRIMARY KEY (`permission_id`,`model_id`,`model_type`),
+  ADD KEY `model_has_permissions_model_id_model_type_index` (`model_id`,`model_type`);
+
+--
+-- Indexes for table `model_has_roles`
+--
+ALTER TABLE `model_has_roles`
+  ADD PRIMARY KEY (`role_id`,`model_id`,`model_type`),
+  ADD KEY `model_has_roles_model_id_model_type_index` (`model_id`,`model_type`);
+
+--
 -- Indexes for table `otps`
 --
 ALTER TABLE `otps`
@@ -193,12 +447,33 @@ ALTER TABLE `password_resets`
   ADD KEY `password_resets_email_index` (`email`);
 
 --
+-- Indexes for table `permissions`
+--
+ALTER TABLE `permissions`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `permissions_name_guard_name_unique` (`name`,`guard_name`);
+
+--
 -- Indexes for table `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `personal_access_tokens_token_unique` (`token`),
   ADD KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`);
+
+--
+-- Indexes for table `roles`
+--
+ALTER TABLE `roles`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `roles_name_guard_name_unique` (`name`,`guard_name`);
+
+--
+-- Indexes for table `role_has_permissions`
+--
+ALTER TABLE `role_has_permissions`
+  ADD PRIMARY KEY (`permission_id`,`role_id`),
+  ADD KEY `role_has_permissions_role_id_foreign` (`role_id`);
 
 --
 -- Indexes for table `users`
@@ -221,25 +496,60 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `otps`
 --
 ALTER TABLE `otps`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `permissions`
+--
+ALTER TABLE `permissions`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `roles`
+--
+ALTER TABLE `roles`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `model_has_permissions`
+--
+ALTER TABLE `model_has_permissions`
+  ADD CONSTRAINT `model_has_permissions_permission_id_foreign` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `model_has_roles`
+--
+ALTER TABLE `model_has_roles`
+  ADD CONSTRAINT `model_has_roles_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `role_has_permissions`
+--
+ALTER TABLE `role_has_permissions`
+  ADD CONSTRAINT `role_has_permissions_permission_id_foreign` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `role_has_permissions_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

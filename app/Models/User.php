@@ -10,10 +10,12 @@ use Laravel\Sanctum\HasApiTokens;
 use Laravel\Sanctum\SanctumServiceProvider;
 use App\Models\Sanctum\PersonalAccessToken;
 use Laravel\Sanctum\Sanctum;
+use Spatie\Permission\Traits\HasRoles;
+use Storage;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens,HasRoles ,HasFactory, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -50,4 +52,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function getImageUrlAttribute(){
+        return Storage::disk('imagesfp')->url($this->image);
+    }
 }

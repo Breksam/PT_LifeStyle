@@ -23,7 +23,7 @@ class LoginController extends Controller
             $success['token'] = $user->createToken(request()->userAgent())->plainTextToken;
             $success['name'] = $user->first_name;
             $success['success'] = true;
-            // $user->notify(new LoginNotification());
+            $user->notify(new LoginNotification());
             return response()->json($success, 200);
         }else{
             return response()->json(['error' => 'Unauthorised'], 401);
