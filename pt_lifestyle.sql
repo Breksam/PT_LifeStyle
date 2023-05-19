@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 17, 2023 at 02:20 AM
+-- Generation Time: May 19, 2023 at 02:34 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -54,12 +54,12 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(18, '2014_10_12_000000_create_users_table', 1),
-(19, '2014_10_12_100000_create_password_resets_table', 1),
-(20, '2019_05_11_000000_create_otps_table', 1),
-(21, '2019_08_19_000000_create_failed_jobs_table', 1),
-(22, '2019_12_14_000001_create_personal_access_tokens_table', 1),
-(23, '2023_05_16_161220_create_permission_tables', 1);
+(7, '2014_10_12_000000_create_users_table', 1),
+(8, '2014_10_12_100000_create_password_resets_table', 1),
+(9, '2019_05_11_000000_create_otps_table', 1),
+(10, '2019_08_19_000000_create_failed_jobs_table', 1),
+(11, '2019_12_14_000001_create_personal_access_tokens_table', 1),
+(12, '2023_05_16_161220_create_permission_tables', 1);
 
 -- --------------------------------------------------------
 
@@ -113,8 +113,8 @@ CREATE TABLE `otps` (
 --
 
 INSERT INTO `otps` (`id`, `identifier`, `token`, `validity`, `valid`, `created_at`, `updated_at`) VALUES
-(1, 'breksamhassan17@gmail.com', '111550', 60, 0, '2023-05-16 21:11:50', '2023-05-16 21:13:02'),
-(3, 'breksamhassan17@gmail.com', '057559', 60, 0, '2023-05-16 21:13:42', '2023-05-16 21:14:11');
+(1, 'breksamhassan17@gmail.com', '483948', 60, 0, '2023-05-19 09:23:13', '2023-05-19 09:24:47'),
+(3, 'breksamhassan17@gmail.com', '230295', 60, 0, '2023-05-19 09:25:50', '2023-05-19 09:26:11');
 
 -- --------------------------------------------------------
 
@@ -247,8 +247,7 @@ CREATE TABLE `personal_access_tokens` (
 --
 
 INSERT INTO `personal_access_tokens` (`id`, `tokenable_type`, `tokenable_id`, `name`, `token`, `abilities`, `last_used_at`, `created_at`, `updated_at`) VALUES
-(3, 'App\\Models\\User', 2, 'PostmanRuntime/7.32.2', '1ae6af6627aa80ac6152b570365b7f154c391844baf80c4e469113aa5a891d7e', '[\"*\"]', '2023-05-16 21:17:54', '2023-05-16 21:14:49', '2023-05-16 21:17:54'),
-(4, 'App\\Models\\User', 1, 'PostmanRuntime/7.32.2', '0bf5b5d3be40fd90803f5557541cc1ab5b217a6701a64d4b052599ecf61ee249', '[\"*\"]', '2023-05-16 21:19:03', '2023-05-16 21:16:41', '2023-05-16 21:19:03');
+(4, 'App\\Models\\User', 2, 'PostmanRuntime/7.32.2', '8d8ae645115563156b1ac37f9aa930b0f1c2147e6b977dc628b5be68e2fccbf6', '[\"*\"]', NULL, '2023-05-19 09:26:24', '2023-05-19 09:26:24');
 
 -- --------------------------------------------------------
 
@@ -269,9 +268,8 @@ CREATE TABLE `roles` (
 --
 
 INSERT INTO `roles` (`id`, `name`, `guard_name`, `created_at`, `updated_at`) VALUES
-(1, 'super admin', 'web', '2023-05-16 21:11:19', '2023-05-16 21:11:19'),
-(2, 'tester', 'web', '2023-05-16 21:16:24', '2023-05-16 21:16:24'),
-(3, 'admin', 'web', '2023-05-16 21:17:54', '2023-05-16 21:17:54');
+(1, 'super admin', 'web', '2023-05-19 09:19:47', '2023-05-19 09:19:47'),
+(2, 'testing', 'web', '2023-05-19 09:27:44', '2023-05-19 09:29:51');
 
 -- --------------------------------------------------------
 
@@ -290,18 +288,15 @@ CREATE TABLE `role_has_permissions` (
 
 INSERT INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES
 (1, 1),
-(1, 2),
 (2, 1),
-(2, 2),
 (3, 1),
-(3, 2),
 (4, 1),
 (5, 1),
-(5, 3),
+(5, 2),
 (6, 1),
-(6, 3),
+(6, 2),
 (7, 1),
-(7, 3),
+(7, 2),
 (8, 1),
 (9, 1),
 (10, 1),
@@ -399,8 +394,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `first_name`, `last_name`, `email`, `email_verified_at`, `password`, `gender`, `birth_date`, `image`, `role`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Admin', 'Test', 'admin@test.com', NULL, '$2y$10$OPSnp3IIGv1FLt0tjkv/Wu2q5X6SS3h1XlsPMaBeEKhcEiOJt97/2', 'female', '2000-01-01', NULL, 'super admin', NULL, '2023-05-16 21:11:23', '2023-05-16 21:11:23'),
-(2, 'Breksam', 'Hassan', 'breksamhassan17@gmail.com', '2023-05-16 21:13:02', '$2y$10$i5da9KrvPGZjx4Tt8dbbm.w9clqGxRatMnvN2yiMR6Kbaz.HU2k.u', 'female', '2000-01-17', '2AhZQVmT1684282535.png', 'user', NULL, '2023-05-16 21:11:49', '2023-05-16 21:15:35');
+(1, 'Admin', 'PT lifeStyle', 'pt.lifestyle11@gmail.com', '2023-05-19 09:24:47', '$2y$10$8Y0hnx8ffmULdy.s5THA8.AoQZhuH.n6v6TnKt4yOHF9XEvomzsEC', 'female', '2000-01-01', NULL, 'super admin', NULL, '2023-05-19 09:19:51', '2023-05-19 09:19:51'),
+(2, 'Breksam', 'Hassan', 'breksamhassan17@gmail.com', '2023-05-19 09:24:47', '$2y$10$kHElgpRhzEo1dirNMXJZLuoOBz60pcKBv8eoaiCZTUIzbQ7jqyL2e', 'female', '2000-01-17', NULL, 'user', NULL, '2023-05-19 09:23:12', '2023-05-19 09:26:11');
 
 --
 -- Indexes for dumped tables
@@ -496,7 +491,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `otps`
@@ -514,13 +509,13 @@ ALTER TABLE `permissions`
 -- AUTO_INCREMENT for table `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `users`
