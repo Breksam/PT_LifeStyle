@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\Auth\ResetPasswordRequest;
+use Laravel\Sanctum\HasApiTokens;
 use App\Models\User;
 use Otp;
 use Hash;
@@ -27,7 +28,7 @@ class ResetPasswordController extends Controller
         $user = User::where('email', $request->email)->first();
         $user->update(['password'=> Hash::make($request->password)]);
         $user->token()->delete();
-        $success['success'] = true;
+        $success['success'] = "your new password is updated successfully";
         return response()->json($success, 200);
     }
 }

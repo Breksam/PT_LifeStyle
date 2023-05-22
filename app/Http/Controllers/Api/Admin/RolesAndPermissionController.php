@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use Spatie\Permission\Models\Permission;
 use App\Http\Requests\Admin\Roles\RolesStoreRequest;
 use App\Http\Requests\Admin\Roles\RolesUpdateRequest;
+use Spatie\Permission\PermissionRegistrar;
 
 class RolesAndPermissionController extends Controller
 {
@@ -22,7 +23,7 @@ class RolesAndPermissionController extends Controller
     {
         $this->authorizeCheck('settings view');
         $role = Role::all();
-        return response()->json(['success'=> true, 'data'=>$role], 200);
+        return response()->json(['success'=> "All Roles views Successfully", 'data'=>$role], 200);
     }
 
     /**
@@ -34,7 +35,7 @@ class RolesAndPermissionController extends Controller
         
         $this->authorizeCheck('settings edit');
         $permissions =Permission::all();
-        return response()->json(['success'=>true, 'permissions'=>$permissions], 200);
+        return response()->json(['success'=>"Permission Created Successfully", 'permissions'=>$permissions], 200);
     }
 
     /**
@@ -47,8 +48,8 @@ class RolesAndPermissionController extends Controller
 
         $data = $request->validated();
         $role = Role::create(['name'=>$request->role, 'guard_name' => 'web'])->givePermissionTo($request->permissions);
-        app()[Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
-        return response()->json(['success'=>true, 'data'=>$role], 200);
+        app()[PermissionRegistrar::class]->forgetCachedPermissions();
+        return response()->json(['success'=>"Role Added Successfully", 'data'=>$role], 200);
     }
 
     /**
@@ -92,8 +93,8 @@ class RolesAndPermissionController extends Controller
         $role->givePermissionTo($request->permissions);
         $role->update(['name'=>$request->role]);
         $role = $role->refresh();
-        app()[Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
-        return response()->json(['success'=>true, 'data'=>$role], 200);
+        app()[PermissionRegistrar::class]->forgetCachedPermissions();
+        return response()->json(['success'=>"The Role and his permissions updated successfully", 'data'=>$role], 200);
     }
 
     /**
@@ -110,6 +111,6 @@ class RolesAndPermissionController extends Controller
         $role->revokePermissionTo($permissions);
         $role->delete();
 
-        return response()->json(['success'=>true], 200);
+        return response()->json(['success'=>'Role Deleted Successfully'], 200);
     }
 }

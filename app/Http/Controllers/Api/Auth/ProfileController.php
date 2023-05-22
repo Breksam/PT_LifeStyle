@@ -28,7 +28,7 @@ class ProfileController extends Controller
         $user->image_url;
         
         $success['user'] = $user;
-        $success['success'] = true;
+        $success['success'] = "your data is updated successfully";
 
         return response()->json($success, 200);
     }

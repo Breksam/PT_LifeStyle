@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Requests\Admin\Roles;
+namespace App\Http\Requests\Admin\User;
 
 use Illuminate\Foundation\Http\FormRequest;
 use App\Traits\AuthorizeCheck;
 
-class RolesUpdateRequest extends FormRequest
+class UserIndexRequest extends FormRequest
 {
     use AuthorizeCheck;
 
@@ -15,11 +15,10 @@ class RolesUpdateRequest extends FormRequest
      * @return bool
      */
     public function authorize()
-    {   
-        $this->authorizeCheck('settings edit');        
+    {
+        $this->authorizeCheck('users view');
         return true;
     }
-
 
     /**
      * Get the validation rules that apply to the request.
@@ -28,11 +27,8 @@ class RolesUpdateRequest extends FormRequest
      */
     public function rules()
     {
-        $role_id = $this->route('role-permission');
         return [
-            'permissions' => ['required'],
-            'permissions[*]' => ['exists:permissions, name'],
-            'role' => ['required', 'unique:roles,name,'. $role_id, 'max:10']
+            'role' => ['sometimes']
         ];
     }
 }

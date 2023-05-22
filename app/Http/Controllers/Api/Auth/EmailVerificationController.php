@@ -19,9 +19,10 @@ class EmailVerificationController extends Controller
 
     public function send_email_verified(Request $request){
         $request->user()->notify(new EmailVerficationNotification());
-        $success['success'] = true;
+        $success['success'] = "Please, check your email";
         return response()->json($success, 200);
     }
+
     public function email_verification(EmailVerificationRequest $request){
         $otp2 = $this->otp->validate($request->email, $request->otp);
         if(!$otp2->status){
@@ -30,7 +31,7 @@ class EmailVerificationController extends Controller
 
         $user = User::where('email', $request->email)->first();
         $user->update(['email_verified_at' => now()]);
-        $success['success'] = true;
+        $success['success'] = "your email is verified successfully";
         return response()->json($success, 200);
     }
 }

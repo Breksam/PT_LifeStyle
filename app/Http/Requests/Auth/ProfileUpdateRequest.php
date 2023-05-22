@@ -24,10 +24,10 @@ class ProfileUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'first_name' => 'required|max:100',
-            'last_name' => 'required|max:100',
-            'email' => 'required|unique:users,email,'.$this->user()->id,
-            'gender' => 'sometimes|max:50',
+            'first_name' => 'required|max:15',
+            'last_name' => 'required|max:15',
+            'email' => 'required|email|unique:users,email,'.$this->user()->id,
+            'gender' => 'sometimes|in:male,female',
             'birth_date' => 'sometimes|date_format:Y-m-d',
             'image' => ['image', 'mimes:jpg,png,jpeg,webp','max:2048'],
         ];

@@ -84,9 +84,11 @@ trait ImageProcessing{
     }
 
     public function deleteImage($filePath){
-        if(is_file(Storage::disk('imagesfp')->path($filePath))){
-            if(file_exists(Storage::disk('imagesfp')->path($filepath))){
-                unlike(Storage::disk('imagesfp')->path($filePath));
+        if($filePath){
+            if(is_file(Storage::disk('imagesfp')->path($filePath))){
+                if(file_exists(Storage::disk('imagesfp')->path($filepath))){
+                    unlike(Storage::disk('imagesfp')->path($filePath));
+                }
             }
         }
     }

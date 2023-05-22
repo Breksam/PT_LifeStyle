@@ -6,6 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use Spatie\Permission\PermissionRegistrar;
 
 class RolesAndPermissionSeeder extends Seeder
 {
@@ -16,6 +17,7 @@ class RolesAndPermissionSeeder extends Seeder
      */
     public function run()
     {
+        app()[PermissionRegistrar::class]->forgetCachedPermissions();
         $arrayOfPermissionName = [
             'message create', 'message view', 'message edit', 'message delete',
             'settings create', 'settings view', 'settings edit', 'settings delete',

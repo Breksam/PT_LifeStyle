@@ -8,8 +8,7 @@ trait AuthorizeCheck{
 
     public function authorizeCheck($permission){
         if(!Auth::user()->can($permission)){
-            return "Only Admin Can Access That";
+            throw new \Illuminate\Auth\Access\AuthorizationException("Only Admin Can Access That!");
         }
     }
-
 }

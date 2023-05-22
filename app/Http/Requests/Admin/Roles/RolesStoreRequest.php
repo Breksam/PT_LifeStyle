@@ -3,9 +3,12 @@
 namespace App\Http\Requests\Admin\Roles;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Traits\AuthorizeCheck;
 
 class RolesStoreRequest extends FormRequest
 {
+    use AuthorizeCheck;
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -13,13 +16,10 @@ class RolesStoreRequest extends FormRequest
      */
     public function authorize()
     {
-        if($this->user()->can('settings edit')){return true;}
-        return false;
+        $this->authorizeCheck('settings edit');        
+        return true;
     }
 
-    protected function failedAuthorization(){
-        return "Only Admin Can Access That";
-    }
     /**
      * Get the validation rules that apply to the request.
      *
@@ -30,8 +30,8 @@ class RolesStoreRequest extends FormRequest
        
         return [
             'permissions' => ['required'],
-            'permissions[*]' => ['exists:permissions'],
-            'role' => ['required', 'unique:roles,name', 'max:60']
+            'permissions[*]' => ['exists:permissions, name'],
+            'role' => ['required', 'unique:roles,name', 'max:10']
         ];
     }
 }

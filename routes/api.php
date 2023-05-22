@@ -9,8 +9,8 @@ use App\Http\Controllers\Api\Auth\EmailVerificationController;
 use App\Http\Controllers\Api\Auth\ForgetPasswordController;
 use App\Http\Controllers\Api\Auth\ResetPasswordController;
 use App\Http\Controllers\Api\Auth\ProfileController;
+use App\Http\Controllers\Api\Admin\UserCrudController;
 use App\Http\Controllers\Api\Admin\RolesAndPermissionController;
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -42,7 +42,9 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::post('logout', [LogoutController::class, 'logout']);
 });
 
+// Admin 
 Route::middleware('auth:sanctum')->prefix('admin')->group(function(){
-    Route::resource('role_permission',App\Http\Controllers\Api\Admin\RolesAndPermissionController::class);
+    Route::resource('role-permission', RolesAndPermissionController::class);
+    Route::resource('user-crud', UserCrudController::class);
 });
 
