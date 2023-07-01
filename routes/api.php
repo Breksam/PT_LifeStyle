@@ -11,6 +11,10 @@ use App\Http\Controllers\Api\Auth\ResetPasswordController;
 use App\Http\Controllers\Api\Auth\ProfileController;
 use App\Http\Controllers\Api\Admin\UserCrudController;
 use App\Http\Controllers\Api\Admin\RolesAndPermissionController;
+
+use App\Http\Controllers\Api\ForDietsRecomController;
+use App\Http\Controllers\Api\ForCustomFoodsRecomController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -47,4 +51,14 @@ Route::middleware('auth:sanctum')->prefix('admin')->group(function(){
     Route::resource('role-permission', RolesAndPermissionController::class);
     Route::resource('user-crud', UserCrudController::class);
 });
+
+// Recommendation System 
+Route::post('diet', [ForDietsRecomController::class, 'storeForDiets']);
+Route::get('diet/{user_id}', [ForDietsRecomController::class, 'showForDiets']);
+
+Route::post('custom_food', [ForCustomFoodsRecomController::class, 'storeForCustomFoods']);
+Route::get('custom_food/{user_id}', [ForCustomFoodsRecomController::class, 'showForCustomFoods']);
+
+
+
 

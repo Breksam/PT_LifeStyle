@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 22, 2023 at 09:48 PM
+-- Generation Time: Jun 27, 2023 at 06:27 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -40,6 +40,72 @@ CREATE TABLE `failed_jobs` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `for_custom_food`
+--
+
+CREATE TABLE `for_custom_food` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `calories` int(11) NOT NULL,
+  `fatContent` int(11) NOT NULL,
+  `satuatedfatContent` int(11) NOT NULL,
+  `cholesterolContent` int(11) NOT NULL,
+  `sodiumContent` int(11) NOT NULL,
+  `carbohydrateContent` int(11) NOT NULL,
+  `fiberContent` int(11) NOT NULL,
+  `sugarContent` int(11) NOT NULL,
+  `proteinContent` int(11) NOT NULL,
+  `numberOfRecommendations` int(11) NOT NULL,
+  `specifyingIngredients` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `for_custom_food`
+--
+
+INSERT INTO `for_custom_food` (`id`, `calories`, `fatContent`, `satuatedfatContent`, `cholesterolContent`, `sodiumContent`, `carbohydrateContent`, `fiberContent`, `sugarContent`, `proteinContent`, `numberOfRecommendations`, `specifyingIngredients`, `user_id`, `created_at`, `updated_at`) VALUES
+(1, 25, 10, 20, 30, 40, 50, 60, 70, 80, 20, 'cheese;apple;banana', 1, '2023-06-27 13:23:48', '2023-06-27 13:23:48'),
+(2, 30, 15, 30, 35, 45, 10, 10, 10, 30, 15, 'meat;egg', 2, '2023-06-27 13:24:54', '2023-06-27 13:24:54');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `for_diets`
+--
+
+CREATE TABLE `for_diets` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `age` int(11) NOT NULL,
+  `height` int(11) NOT NULL,
+  `weight` int(11) NOT NULL,
+  `gender` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `physical_activity` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `weight_loss_plan` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `meals` int(11) NOT NULL,
+  `bmi` double(8,2) NOT NULL,
+  `bmi_string` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `bmi_category` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `bmi_color` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `bmr` double(8,2) NOT NULL,
+  `maintain_calories` double(8,2) NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `for_diets`
+--
+
+INSERT INTO `for_diets` (`id`, `age`, `height`, `weight`, `gender`, `physical_activity`, `weight_loss_plan`, `meals`, `bmi`, `bmi_string`, `bmi_category`, `bmi_color`, `bmr`, `maintain_calories`, `user_id`, `created_at`, `updated_at`) VALUES
+(1, 35, 170, 75, 'male', 'Light exercise', 'Weight loss', 3, 25.95, '25.95 kg/m²', 'Overweight', 'Yellow', 1642.50, 2258.44, 1, '2023-06-27 13:09:40', '2023-06-27 13:21:53'),
+(2, 23, 162, 56, 'female', 'Light exercise', 'Maintain weight', 3, 21.34, '21.34 kg/m²', 'Normal', 'Green', 1618.50, 2225.44, 2, '2023-06-27 13:10:07', '2023-06-27 13:23:12');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `migrations`
 --
 
@@ -54,12 +120,14 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(31, '2014_10_12_000000_create_users_table', 1),
-(32, '2014_10_12_100000_create_password_resets_table', 1),
-(33, '2019_05_11_000000_create_otps_table', 1),
-(34, '2019_08_19_000000_create_failed_jobs_table', 1),
-(35, '2019_12_14_000001_create_personal_access_tokens_table', 1),
-(36, '2023_05_16_161220_create_permission_tables', 1);
+(1, '2014_10_12_000000_create_users_table', 1),
+(2, '2014_10_12_100000_create_password_resets_table', 1),
+(3, '2019_05_11_000000_create_otps_table', 1),
+(4, '2019_08_19_000000_create_failed_jobs_table', 1),
+(5, '2019_12_14_000001_create_personal_access_tokens_table', 1),
+(6, '2023_05_16_161220_create_permission_tables', 1),
+(7, '2023_06_20_134842_create_for_diets_table', 1),
+(8, '2023_06_20_135356_create_for_custom_food_table', 1);
 
 -- --------------------------------------------------------
 
@@ -113,8 +181,7 @@ CREATE TABLE `otps` (
 --
 
 INSERT INTO `otps` (`id`, `identifier`, `token`, `validity`, `valid`, `created_at`, `updated_at`) VALUES
-(1, 'breksamhassan17@gmail.com', '697986', 60, 0, '2023-05-22 12:45:38', '2023-05-22 13:09:25'),
-(3, 'breksamhassan17@gmail.com', '952548', 60, 0, '2023-05-22 16:08:00', '2023-05-22 16:08:58');
+(1, 'breksamhassan17@gmail.com', '571315', 60, 1, '2023-06-27 13:09:13', '2023-06-27 13:09:13');
 
 -- --------------------------------------------------------
 
@@ -247,8 +314,7 @@ CREATE TABLE `personal_access_tokens` (
 --
 
 INSERT INTO `personal_access_tokens` (`id`, `tokenable_type`, `tokenable_id`, `name`, `token`, `abilities`, `last_used_at`, `created_at`, `updated_at`) VALUES
-(4, 'App\\Models\\User', 2, 'PostmanRuntime/7.32.2', '795009e41325fe1b2d8c83a46f8d194345d55ddfc143d2bf936b2a07cd853edc', '[\"*\"]', '2023-05-22 16:23:40', '2023-05-22 16:03:35', '2023-05-22 16:23:40'),
-(6, 'App\\Models\\User', 1, 'PostmanRuntime/7.32.2', 'bbb9220798b78fea1a97d0f8f4d208bccdd331a6bd1816c688e51cd6176c56a6', '[\"*\"]', '2023-05-22 16:23:59', '2023-05-22 16:15:55', '2023-05-22 16:23:59');
+(1, 'App\\Models\\User', 2, 'user', 'b485fadf8e55727234cdff882a2a91e8621fe5b697e7f120c8283a7acc2a0fc8', '[\"app:all\"]', NULL, '2023-06-27 13:09:13', '2023-06-27 13:09:13');
 
 -- --------------------------------------------------------
 
@@ -269,7 +335,7 @@ CREATE TABLE `roles` (
 --
 
 INSERT INTO `roles` (`id`, `name`, `guard_name`, `created_at`, `updated_at`) VALUES
-(1, 'super admin', 'web', '2023-05-22 12:45:13', '2023-05-22 12:45:13');
+(1, 'super admin', 'web', '2023-06-27 13:07:20', '2023-06-27 13:07:20');
 
 -- --------------------------------------------------------
 
@@ -391,8 +457,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `first_name`, `last_name`, `email`, `email_verified_at`, `password`, `gender`, `birth_date`, `image`, `role`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Admin', 'PT lifeStyle', 'pt.lifestyle11@gmail.com', NULL, '$2y$10$aZ1CbvglhmAX/3wZoAUyJuTKwiXMR3h.dxhQr3PH72YilN21Qi8Nm', 'female', '2000-01-01', NULL, 'super admin', NULL, '2023-05-22 12:45:17', '2023-05-22 12:45:17'),
-(2, 'Breksam', 'Hassan', 'breksamhassan17@gmail.com', '2023-05-22 16:08:58', '$2y$10$YFUS/ZagnUiHjpf.XZjZ4urq7K/2aSFc3gXe3gC1OFlIVMNpxzpiy', 'female', '2000-01-17', 'uicnbQfe1684782399.png', 'user', NULL, '2023-05-22 12:45:38', '2023-05-22 16:08:58');
+(1, 'Admin', 'PT lifeStyle', 'pt.lifestyle11@gmail.com', NULL, '$2y$10$39s4/FtmjyuPjvla0gC2huitOcSRrYjVwCA1gOOka3pN6E/UMyeca', 'female', '2000-01-01', NULL, 'super admin', NULL, '2023-06-27 13:07:29', '2023-06-27 13:07:29'),
+(2, 'Breksam', 'Hassan', 'breksamhassan17@gmail.com', NULL, '$2y$10$zY5CCrcEGnICMJfs55nwEuxSQNdwzjbvm8ogHvY90R4f3G6ozB37e', 'female', NULL, NULL, 'user', NULL, '2023-06-27 13:09:12', '2023-06-27 13:09:12');
 
 --
 -- Indexes for dumped tables
@@ -404,6 +470,20 @@ INSERT INTO `users` (`id`, `first_name`, `last_name`, `email`, `email_verified_a
 ALTER TABLE `failed_jobs`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
+
+--
+-- Indexes for table `for_custom_food`
+--
+ALTER TABLE `for_custom_food`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `for_custom_food_user_id_foreign` (`user_id`);
+
+--
+-- Indexes for table `for_diets`
+--
+ALTER TABLE `for_diets`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `for_diets_user_id_foreign` (`user_id`);
 
 --
 -- Indexes for table `migrations`
@@ -485,16 +565,28 @@ ALTER TABLE `failed_jobs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `for_custom_food`
+--
+ALTER TABLE `for_custom_food`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `for_diets`
+--
+ALTER TABLE `for_diets`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `otps`
 --
 ALTER TABLE `otps`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `permissions`
@@ -506,23 +598,35 @@ ALTER TABLE `permissions`
 -- AUTO_INCREMENT for table `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `for_custom_food`
+--
+ALTER TABLE `for_custom_food`
+  ADD CONSTRAINT `for_custom_food_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `for_diets`
+--
+ALTER TABLE `for_diets`
+  ADD CONSTRAINT `for_diets_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `model_has_permissions`
