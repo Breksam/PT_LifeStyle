@@ -7,12 +7,13 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\ForDiet;
 use App\Http\Requests\ForDietsRecomRequest;
+use Illuminate\Support\Facades\Auth;
 
 
 class ForDietsRecomController extends Controller
 {
     public function storeForDiets(ForDietsRecomRequest $request){
-        
+
         $newdiet = $request->validated();
 
             $ex_diet = ForDiet::where('user_id',$newdiet['user_id'])->first();
@@ -118,23 +119,12 @@ class ForDietsRecomController extends Controller
     public function showForDiets($id){
         $diet = ForDiet::get()->where('user_id' , $id)->first();
 
+        return response()->json($diet, 200);
+    }
 
-        $success['id'] = $diet->id;
-        $success['age'] = $diet->age;
-        $success['height'] = $diet->height;
-        $success['weight'] = $diet->weight;
-        $success['gender'] = $diet->gender;
-        $success['physical_activity'] = $diet->physical_activity;
-        $success['weight_loss_plan'] = $diet->weight_loss_plan;
-        $success['meals'] = $diet->meals;
-        $success['bmi'] = $diet->bmi;
-        $success['bmi_string'] = $diet->bmi_string;
-        $success['bmi_category'] = $diet->bmi_category;
-        $success['bmi_color'] = $diet->bmi_color;
-        $success['bmr'] = $diet->bmr;
-        $success['maintain_calories'] = $diet->maintain_calories;
-        $success['user_id'] = $diet->user_id;
-        $success['success'] = "Your Diet Recommended successfully";
-        return response()->json($success, 200);
+     public function showAllForDiets(){
+        $diets = ForDiet::get()->all();
+        
+        return response()->json($diets,200);
     }
 }

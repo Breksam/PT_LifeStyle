@@ -55,9 +55,13 @@ Route::middleware('auth:sanctum')->prefix('admin')->group(function(){
 // Recommendation System 
 Route::post('diet', [ForDietsRecomController::class, 'storeForDiets']);
 Route::get('diet/{user_id}', [ForDietsRecomController::class, 'showForDiets']);
+Route::get('diets', [ForDietsRecomController::class, 'showAllForDiets']);
+
 
 Route::post('custom_food', [ForCustomFoodsRecomController::class, 'storeForCustomFoods']);
 Route::get('custom_food/{user_id}', [ForCustomFoodsRecomController::class, 'showForCustomFoods']);
+Route::get('custom_foods', [ForCustomFoodsRecomController::class, 'showAllForCustomFoods']);
+
 
 
 

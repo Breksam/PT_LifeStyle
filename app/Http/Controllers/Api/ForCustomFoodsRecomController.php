@@ -74,24 +74,12 @@ class ForCustomFoodsRecomController extends Controller
     public function showForCustomFoods($id){
         $diet = ForCustomFood::get()->where('user_id' , $id)->first();
 
+        return response()->json($diet,200);
+    }
 
-        $success['id'] = $diet->id;
-        $success['calories'] = $diet->calories;
-        $success['fatContent'] = $diet->fatContent;
-        $success['satuatedfatContent'] = $diet->satuatedfatContent;
-        $success['cholesterolContent'] = $diet->cholesterolContent;
-        $success['sodiumContent'] = $diet->sodiumContent;
-        $success['carbohydrateContent'] = $diet->carbohydrateContent;
-        $success['fiberContent'] = $diet->fiberContent;
-        $success['sugarContent'] = $diet->sugarContent;
-        $success['proteinContent'] = $diet->proteinContent;
-        $success['numberOfRecommendations'] = $diet->numberOfRecommendations;
+    public function showAllForCustomFoods(){
+        $diets = ForCustomFood::get();
 
-        $specifyingIngredients = explode(';', $diet->specifyingIngredients);
-
-        $success['specifyingIngredients'] = $specifyingIngredients;
-        $success['user_id'] = $diet->user_id;
-        $success['success'] = "Your Diet Recommended successfully";
-        return response()->json($success, 200);
+        return response()->json($diets,200);
     }
 }
