@@ -26,17 +26,25 @@ class ForDietsRecomController extends Controller
             $newdiet['bmi_string'] = $newdiet['bmi'].' kg/m²';
     
             if($newdiet['bmi'] < 18.5){
+
                 $newdiet['bmi_category'] = 'Underweight';
                 $newdiet['bmi_color'] = 'Red';
+
             }elseif(18.5 <= $newdiet['bmi'] && $newdiet['bmi'] < 25){
+
                 $newdiet['bmi_category'] = 'Normal';
                 $newdiet['bmi_color'] = 'Green';
+
             }elseif(25 <= $newdiet['bmi'] && $newdiet['bmi'] < 30){
+
                 $newdiet['bmi_category'] = 'Overweight';
                 $newdiet['bmi_color'] = 'Yellow';
+
             }else{
+
                 $newdiet['bmi_category'] = 'Obesity';
                 $newdiet['bmi_color'] = 'Red';
+
             }
     
             // calculate BMR
@@ -119,12 +127,18 @@ class ForDietsRecomController extends Controller
     public function showForDiets($id){
         $diet = ForDiet::get()->where('user_id' , $id)->first();
 
-        return response()->json($diet, 200);
+        if(is_null($diet))
+            return response()->json(["error"=> 'Not found data for This User!']);
+        else
+            return response()->json($diet, 200);
     }
 
      public function showAllForDiets(){
         $diets = ForDiet::get()->all();
         
-        return response()->json($diets,200);
+        if(is_null($diets))
+            return response()->json(["error"=> 'Not found any Data!']);
+        else
+            return response()->json($diets,200);
     }
 }

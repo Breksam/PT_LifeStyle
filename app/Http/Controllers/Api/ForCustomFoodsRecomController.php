@@ -73,13 +73,18 @@ class ForCustomFoodsRecomController extends Controller
 
     public function showForCustomFoods($id){
         $diet = ForCustomFood::get()->where('user_id' , $id)->first();
-
-        return response()->json($diet,200);
+        if(is_null($diet))
+            return response()->json(["error"=> 'Not found data for This User!']);
+        else
+            return response()->json($diet,200);
     }
 
     public function showAllForCustomFoods(){
         $diets = ForCustomFood::get();
 
-        return response()->json($diets,200);
+        if(is_null($diets))
+            return response()->json(["error"=> 'Not found any Data!']);
+        else
+            return response()->json($diets,200);
     }
 }

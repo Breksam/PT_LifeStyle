@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 27, 2023 at 06:27 PM
+-- Generation Time: Jul 03, 2023 at 02:57 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -66,8 +66,8 @@ CREATE TABLE `for_custom_food` (
 --
 
 INSERT INTO `for_custom_food` (`id`, `calories`, `fatContent`, `satuatedfatContent`, `cholesterolContent`, `sodiumContent`, `carbohydrateContent`, `fiberContent`, `sugarContent`, `proteinContent`, `numberOfRecommendations`, `specifyingIngredients`, `user_id`, `created_at`, `updated_at`) VALUES
-(1, 25, 10, 20, 30, 40, 50, 60, 70, 80, 20, 'cheese;apple;banana', 1, '2023-06-27 13:23:48', '2023-06-27 13:23:48'),
-(2, 30, 15, 30, 35, 45, 10, 10, 10, 30, 15, 'meat;egg', 2, '2023-06-27 13:24:54', '2023-06-27 13:24:54');
+(1, 1000, 70, 13, 100, 900, 155, 23, 10, 33, 5, 'apple;banana', 1, '2023-06-27 13:23:48', '2023-07-01 06:47:31'),
+(2, 500, 40, 8, 200, 1600, 300, 32, 25, 30, 15, 'meat;egg', 2, '2023-06-27 13:24:54', '2023-07-01 06:43:39');
 
 -- --------------------------------------------------------
 
@@ -101,7 +101,7 @@ CREATE TABLE `for_diets` (
 
 INSERT INTO `for_diets` (`id`, `age`, `height`, `weight`, `gender`, `physical_activity`, `weight_loss_plan`, `meals`, `bmi`, `bmi_string`, `bmi_category`, `bmi_color`, `bmr`, `maintain_calories`, `user_id`, `created_at`, `updated_at`) VALUES
 (1, 35, 170, 75, 'male', 'Light exercise', 'Weight loss', 3, 25.95, '25.95 kg/m²', 'Overweight', 'Yellow', 1642.50, 2258.44, 1, '2023-06-27 13:09:40', '2023-06-27 13:21:53'),
-(2, 23, 162, 56, 'female', 'Light exercise', 'Maintain weight', 3, 21.34, '21.34 kg/m²', 'Normal', 'Green', 1618.50, 2225.44, 2, '2023-06-27 13:10:07', '2023-06-27 13:23:12');
+(2, 30, 162, 56, 'female', 'Light exercise', 'Maintain weight', 3, 21.34, '21.34 kg/m²', 'Normal', 'Green', 1583.50, 2177.31, 2, '2023-06-27 13:10:07', '2023-07-02 16:25:23');
 
 -- --------------------------------------------------------
 
@@ -598,7 +598,7 @@ ALTER TABLE `permissions`
 -- AUTO_INCREMENT for table `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `roles`
