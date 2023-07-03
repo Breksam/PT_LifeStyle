@@ -22,6 +22,7 @@ class LoginController extends Controller
             
             $user->tokens()->delete();
             $success['token'] = $user->createToken(request()->userAgent())->plainTextToken;
+            $success['id'] = $user->id;
             $success['name'] = $user->first_name;
             $success['success'] = 'login successfully';
 
