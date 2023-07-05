@@ -26,8 +26,7 @@ use App\Http\Controllers\Api\ForCustomFoodsRecomController;
 |
 */
 
-
-
+// User
 Route::post('register', [RegisterController::class, 'register']);
 Route::post('login', [LoginController::class, 'login']);
 
@@ -52,12 +51,15 @@ Route::middleware('auth:sanctum')->prefix('admin')->group(function(){
     Route::resource('user-crud', UserCrudController::class);
 });
 
+
 // Recommendation System 
+
+// for diet based on user's data
 Route::post('diet', [ForDietsRecomController::class, 'storeForDiets']);
 Route::get('diet/{user_id}', [ForDietsRecomController::class, 'showForDiets']);
 Route::get('diets', [ForDietsRecomController::class, 'showAllForDiets']);
 
-
+// for diet based on custom food
 Route::post('custom_food', [ForCustomFoodsRecomController::class, 'storeForCustomFoods']);
 Route::get('custom_food/{user_id}', [ForCustomFoodsRecomController::class, 'showForCustomFoods']);
 Route::get('custom_foods', [ForCustomFoodsRecomController::class, 'showAllForCustomFoods']);

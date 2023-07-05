@@ -34,5 +34,6 @@ class ForDietsRecomRequest extends FormRequest
             'user_id'            => 'required',
         ];
     }
-
+    
 }
+
