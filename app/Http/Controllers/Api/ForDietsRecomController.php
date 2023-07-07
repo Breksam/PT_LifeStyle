@@ -16,6 +16,14 @@ class ForDietsRecomController extends Controller
 
         $newdiet = $request->validated();
 
+        dd(auth());
+
+        // $user_id = auth()->user()->id;
+        // return $user_id;
+        
+        die();
+
+
             $ex_diet = ForDiet::where('user_id',$newdiet['user_id'])->first();
 
             // calculate BMI
